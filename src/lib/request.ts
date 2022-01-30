@@ -4,10 +4,6 @@ import { apiConfig } from './api-config'
 import { routesConfig } from './routes-config'
 import { sessionHandler } from './session-handler'
 
-axios.defaults.baseURL = 'http://myurlhttps://user-api-stagin.herokuapp.com/api';
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-
 export interface IRequestOptions {
   unauthorizedErrorExpected: boolean
 }
@@ -24,10 +20,8 @@ async function doRequest<T>(
   payload: any = null,
 ): Promise<Response<T>> {
 
-  const headers: { [key: string]: string } = {
-    'Access-Control-Allow-Origin': '*'
-  }
-  console.log(headers)
+  const headers: { [key: string]: string } = {}
+
   const token = sessionHandler.getToken()
 
   if (token) {
@@ -35,7 +29,13 @@ async function doRequest<T>(
   }
 
   try {
-    console.log('aaaaa')
+    console.log('aaaaa', {
+      baseURL: apiConfig.baseUrl(),
+      url,
+      method,
+      headers,
+      data: payload
+    })
     const response = await axios({
       baseURL: apiConfig.baseUrl(),
       url,

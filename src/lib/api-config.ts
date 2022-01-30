@@ -1,5 +1,5 @@
 export const apiConfig = {
-  baseUrl: () => 'https://user-api-stagin.herokuapp.com/api',
+  baseUrl: () => process.env.API_BASE_URL || 'http://localhost:4000/api',
   session: {
     signUp: () => '/session/sign-up',
     signIn: () => '/session/login'
