@@ -29,13 +29,6 @@ async function doRequest<T>(
   }
 
   try {
-    console.log('aaaaa', {
-      baseURL: apiConfig.baseUrl(),
-      url,
-      method,
-      headers,
-      data: payload
-    })
     const response = await axios({
       baseURL: apiConfig.baseUrl(),
       url,
