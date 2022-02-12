@@ -1,24 +1,23 @@
-import React from 'react'
-import { IconButton, Menu as MenuUI, MenuItem as MenuItemUI } from '@material-ui/core'
+import React from "react";
+import {
+  IconButton,
+  Menu as MenuUI,
+  MenuItem as MenuItemUI,
+} from "@mui/material";
 
 export interface MenuProps {
-  items: MenuItem[]
-  buttonContent: React.ReactElement
-  buttonProps?: { [key: string]: any}
+  items: MenuItem[];
+  buttonContent: React.ReactElement;
+  buttonProps?: { [key: string]: any };
 }
 
 export interface MenuItem {
-  id: string
-  label: string
-  action: () => void
+  id: string;
+  label: string;
+  action: () => void;
 }
 
-export const Menu = ({
-  buttonContent,
-  buttonProps,
-  items
-}: MenuProps) => {
-
+export const Menu = ({ buttonContent, buttonProps, items }: MenuProps) => {
   const nodeRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -33,10 +32,10 @@ export const Menu = ({
 
   const onClickHandle = (action: () => void) => {
     return () => {
-      handleClose()
-      action()
-    }
-  }
+      handleClose();
+      action();
+    };
+  };
   return (
     <div>
       <IconButton
@@ -45,7 +44,7 @@ export const Menu = ({
         aria-haspopup="true"
         onClick={handleMenu}
         color="inherit"
-        { ...(buttonProps || {}) }
+        {...(buttonProps || {})}
       >
         {buttonContent}
       </IconButton>
@@ -54,24 +53,24 @@ export const Menu = ({
         id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         open={open}
         onClose={handleClose}
       >
-        {items && 
+        {items &&
           items.map((item: MenuItem) => (
-            <MenuItemUI key={item.id} onClick={onClickHandle(item.action)}>{item.label}</MenuItemUI>
-          ))
-        }
-        
+            <MenuItemUI key={item.id} onClick={onClickHandle(item.action)}>
+              {item.label}
+            </MenuItemUI>
+          ))}
       </MenuUI>
     </div>
-  )
-}
+  );
+};

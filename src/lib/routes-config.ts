@@ -3,5 +3,9 @@ export const routesConfig = {
     signIn: () => '/session/signin',
     loadUser: () => '/session/user'
   },
-  home: () => '/home'
+  home: () => '/home',
+  users: {
+    list: () => '/users',
+    form: (id?: number) => `/users/form/${id || ''}`
+  }
 }
