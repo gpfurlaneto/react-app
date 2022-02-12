@@ -4,7 +4,7 @@ import { Request } from "../../lib/request"
 import { User } from "../../types/User"
 import { apiConfig } from "../../lib/api-config"
 export const defaultUsersState = {
-  users: [] as User[],
+  users: null as unknown as User[],
   isLoading: false,
   selectedUserToDelete: null as unknown as User,
 }
@@ -48,7 +48,7 @@ class Service extends BaseService<UsersState> {
     const result = await Request.get<User>(apiConfig.users.loadAll())
     this.updateState({
       ...this.currentState,
-      users: result.data as unknown as User[],
+      users: result.data as unknown as User[] || [] as User[],
       isLoading: false
     })
   }

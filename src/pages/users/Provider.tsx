@@ -13,10 +13,10 @@ export const Provider: React.FC<UsersPageProviderProps> = ({ children }) => {
   const state = useStateService<UsersState>(Service);
   const { error } = useDefaultSnackbar();
   useEffect(() => {
-    if (!state.users?.length) {
+    if (!state.users && !state.isLoading) {
       Service.loadUsers();
     }
-  }, [error, state.users?.length]);
+  }, [error, state.users, state.isLoading]);
 
   const doDelete = async () => {
     const result = await Service.deleteSelectedUser();

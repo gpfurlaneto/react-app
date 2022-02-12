@@ -29,7 +29,7 @@ export const Provider: React.FC<UserFormPageProviderProps> = ({
     if (userId && !state.id && !state.isLoading) {
       doLoadUser(userId);
     }
-  }, [userId, error]);
+  }, [userId, error, state.id, state.isLoading]);
 
   const doCancel = () => {
     history.push(routesConfig.users.list());
