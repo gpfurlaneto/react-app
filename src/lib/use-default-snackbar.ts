@@ -1,4 +1,4 @@
-import { SnackbarOrigin } from '@material-ui/core'
+import { SnackbarOrigin } from '@mui/material'
 import { useSnackbar, OptionsObject } from 'notistack'
 
 export const useDefaultSnackbar = () => {
@@ -9,6 +9,7 @@ export const useDefaultSnackbar = () => {
   }
 
   return {
-    error: (error: string, options?: OptionsObject) => enqueueSnackbar(error, { ...options, variant: 'error', anchorOrigin})
+    error: (error: string, options?: OptionsObject) => enqueueSnackbar(error, { ...options, variant: 'error', anchorOrigin }),
+    success: (success: string, options?: OptionsObject) => enqueueSnackbar(success, { ...options, variant: 'success', anchorOrigin })
   }
 }

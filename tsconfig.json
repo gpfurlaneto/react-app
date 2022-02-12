@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 {
   "compilerOptions": {
     "target": "es5",
@@ -34,6 +22,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": true,
+    "strictNullChecks": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/types/*"
