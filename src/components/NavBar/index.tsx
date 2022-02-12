@@ -1,20 +1,18 @@
-import React from "react";
 import { Menu } from "../Menu";
-import { useStyle } from "./styles";
-import { Box } from "@material-ui/core";
+import { Box, useTheme } from "@mui/material";
 import { useHistory } from "react-router";
-import AppBar from "@material-ui/core/AppBar";
-import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import AppBar from "@mui/material/AppBar";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 interface NavBarProps {
   logout: () => void;
 }
 
 export const NavBar = ({ logout }: NavBarProps) => {
-  const classes = useStyle();
+  const theme = useTheme();
   const history = useHistory();
 
   return (
@@ -25,7 +23,10 @@ export const NavBar = ({ logout }: NavBarProps) => {
             buttonContent={<MenuIcon />}
             buttonProps={{
               edge: "start",
-              className: classes.menuButton,
+              sx: {
+                marginRight: theme.spacing(2),
+              },
+              // className: classes.menuButton,
               color: "inherit",
               "aria-label": "menu",
             }}
@@ -45,7 +46,7 @@ export const NavBar = ({ logout }: NavBarProps) => {
           <Typography>React App</Typography>
         </Box>
         <Menu
-          buttonContent={<AccountCircle />}
+          buttonContent={<AccountCircleIcon />}
           items={[{ id: "logout", label: "Logout", action: logout }]}
         />
       </Toolbar>

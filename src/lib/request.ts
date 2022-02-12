@@ -12,6 +12,7 @@ export interface Response<T> {
   data?: T
   code?: number
   error?: string
+  isOk: boolean
 }
 
 async function doRequest<T>(
@@ -39,10 +40,11 @@ async function doRequest<T>(
 
     return {
       code: response.status,
-      data: response.data as T
+      data: response.data as T,
+      isOk: true
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     if (error.response) {
       if (error.response.status === 401) {
         sessionHandler.clearToken()
@@ -54,12 +56,15 @@ async function doRequest<T>(
         : get(error, 'response.data.message') || error.message
       return {
         code: error.response.status,
-        error: errorMessage
+        error: errorMessage,
+        isOk: false
       }
     }
 
     return {
-      error: error.message
+      code: error.response.status,
+      error: error.message,
+      isOk: false
     }
   }
 }
