@@ -26,7 +26,7 @@ export const Provider: React.FC<UserFormPageProviderProps> = ({
         error(result.error as string);
       }
     }
-    if (userId) {
+    if (userId && !state.id && !state.isLoading) {
       doLoadUser(userId);
     }
   }, [userId, error]);
