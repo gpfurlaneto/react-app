@@ -1,7 +1,7 @@
 export const apiConfig = {
   baseUrl: () => {
     // TODO FIX ENV VARS
-    return process.env.API_BASE_URL || 'https://user-api-stagin.herokuapp.com/api'
+    return process.env.API_BASE_URL || 'https://user-api-node-staging.herokuapp.com/api'
   },
   session: {
     signUp: () => '/session/sign-up',
