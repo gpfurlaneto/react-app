@@ -5,9 +5,10 @@ dotenv.config();
 const apiBaseUrl = process.env.API_BASE_URL;
 fs.writeFile(
   "./src/lib/env.ts",
-  `export default {
-  API_BASE_URL: '${apiBaseUrl}'
-}
+  `const env = {
+  API_BASE_URL: '${apiBaseUrl || ""}'
+};
+export default env
 `,
   function (err) {
     if (err) {
