@@ -1,9 +1,8 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import env from './env'
 
 export const apiConfig = {
   baseUrl: () => {
-    return process.env.API_BASE_URL || 'http://localhost:4000/api'
+    return env.API_BASE_URL || 'http://localhost:4000/api'
   },
   session: {
     signUp: () => '/session/sign-up',
