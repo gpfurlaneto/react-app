@@ -9,6 +9,7 @@
     "@mui/material": "^5.4.1",
     "@mui/x-data-grid": "^5.5.1",
     "axios": "^0.21.1",
+    "dotenv": "^16.0.0",
     "lodash": "^4.17.21",
     "notistack": "^2.0.3",
     "react": "^17.0.2",
@@ -19,8 +20,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node ./scripts/generateBaseEnvKEys && react-scripts start",
+    "build": "node ./scripts/generateBaseEnvKEys && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
