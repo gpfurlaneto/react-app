@@ -1,6 +1,6 @@
 import { Menu } from "../Menu";
 import { Box, useTheme } from "@mui/material";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";

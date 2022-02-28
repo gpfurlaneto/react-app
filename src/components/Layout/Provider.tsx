@@ -2,7 +2,7 @@ import { LayoutProps } from '.'
 import React, { ReactElement } from 'react'
 import { useHistory } from 'react-router-dom'
 import Service from '../SessionManager/Service'
-import { routesConfig } from '../../lib/routes-config'
+import routesConfig from '../../lib/routes-config'
 
 export interface LayoutProviderProps {
   content: React.ReactElement
