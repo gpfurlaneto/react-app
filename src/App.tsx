@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { HomePage, SignInPage, UsersPage, UserFormPage } from "./pages";

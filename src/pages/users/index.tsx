@@ -8,7 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ConfirmDialog } from "../../components/ConfirmDialog";
 import { useHistory } from "react-router-dom";
-import { routesConfig } from "../../lib/routes-config";
+import routesConfig from "../../lib/routes-config";
 
 export interface UsersPageProps {
   state: UsersState;
@@ -51,12 +51,12 @@ const getColumns = (
   ];
 };
 
-export const Wrapper: React.FC<UsersPageProps> = ({
+export const Wrapper: React.FC<UsersPageProps> = function WapperComponent({
   state,
   selectUserToDelete,
   clearDeleteUser,
   deleteSelectedUser,
-}) => {
+}) {
   const history = useHistory();
 
   const redirectToEdit = (id: number) => {

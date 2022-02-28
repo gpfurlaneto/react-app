@@ -2,14 +2,14 @@ import React, { ReactElement, useEffect } from "react";
 import { UsersPageProps } from ".";
 import { User } from "../../types/User";
 import Service, { UsersState } from "./Service";
-import { useStateService } from "../../lib/use-state-service";
-import { useDefaultSnackbar } from "../../lib/use-default-snackbar";
+import useStateService from "../../lib/use-state-service";
+import useDefaultSnackbar from "../../lib/use-default-snackbar";
 
 interface UsersPageProviderProps {
   children: (props: UsersPageProps) => ReactElement;
 }
 
-export const Provider: React.FC<UsersPageProviderProps> = ({ children }) => {
+export const Provider: React.FC<UsersPageProviderProps> = function WapperComponent({ children }) {
   const state = useStateService<UsersState>(Service);
   const { error } = useDefaultSnackbar();
   useEffect(() => {

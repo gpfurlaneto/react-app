@@ -1,20 +1,20 @@
 import React, { ReactElement } from 'react'
+import { useHistory } from 'react-router-dom'
 import { SignInPageProps } from '.'
 import { User } from '../../types/User'
-import { useHistory } from 'react-router-dom'
 import Service, { SignInState } from './Service'
-import { routesConfig } from '../../lib/routes-config'
-import { useStateService } from '../../lib/use-state-service'
-import { useDefaultSnackbar } from '../../lib/use-default-snackbar'
+import routesConfig from '../../lib/routes-config'
+import useStateService from '../../lib/use-state-service'
+import useDefaultSnackbar from '../../lib/use-default-snackbar'
 import sessionService from '../../components/SessionManager/Service'
 
 interface SignInProviderProps {
   children: (props: SignInPageProps) => ReactElement
 }
 
-export const Provider: React.FC<SignInProviderProps> = ({ children }) => {
+export const Provider: React.FC<SignInProviderProps> = function WrapperComponent({ children }) {
 
-  const { push } = useHistory();
+  const { push } = useHistory(); // eslint-disable-line @typescript-eslint/unbound-method
   const enqueueSnackbar = useDefaultSnackbar()
   
   const state = useStateService<SignInState>(Service)

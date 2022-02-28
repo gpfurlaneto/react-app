@@ -7,7 +7,7 @@ export interface LayoutProps {
   children: React.ReactElement;
 }
 
-export const Wrapper: React.FC<LayoutProps> = ({ logout, children }) => {
+export const Wrapper: React.FC<LayoutProps> = function WrapperComponent({ logout, children }) {
   return (
     <>
       <NavBar logout={logout} />

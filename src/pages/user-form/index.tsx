@@ -13,20 +13,20 @@ export interface UserFormPageProps {
   onCancel: () => void;
 }
 
-export const Wrapper: React.FC<UserFormPageProps> = ({
+export const Wrapper: React.FC<UserFormPageProps> = function WapperComponent({
   state,
   onChangeUsername,
   onChangeEmail,
   onChangePasword,
   onSave,
   onCancel,
-}) => {
+}) {
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     onSave();
   };
 
-  const cancel = (e: SyntheticEvent) => {
+  const cancel = () => {
     onCancel();
   };
 
@@ -87,7 +87,7 @@ export const Wrapper: React.FC<UserFormPageProps> = ({
               <Button variant="outlined" onClick={cancel}>
                 Cancel
               </Button>
-              <>&nbsp;</>
+              &nbsp;
               <Button variant="contained" type="submit">
                 Save
               </Button>

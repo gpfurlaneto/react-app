@@ -1,20 +1,20 @@
 import React, { ReactElement, useEffect } from "react";
 import { UserFormPageProps } from ".";
 import Service, { UserFormState } from "./Service";
-import { useStateService } from "../../lib/use-state-service";
-import { useDefaultSnackbar } from "../../lib/use-default-snackbar";
-import { useHistory } from "react-router";
-import { routesConfig } from "../../lib/routes-config";
+import useStateService from "../../lib/use-state-service";
+import useDefaultSnackbar from "../../lib/use-default-snackbar";
+import { useHistory } from "react-router-dom";
+import routesConfig from "../../lib/routes-config";
 
 interface UserFormPageProviderProps {
   userId?: string;
   children: (props: UserFormPageProps) => ReactElement;
 }
 
-export const Provider: React.FC<UserFormPageProviderProps> = ({
+export const Provider: React.FC<UserFormPageProviderProps> = function WrapperComponent({
   userId,
   children,
-}) => {
+}) {
   const history = useHistory();
   const state = useStateService<UserFormState>(Service);
   const { error, success } = useDefaultSnackbar();
@@ -40,7 +40,9 @@ export const Provider: React.FC<UserFormPageProviderProps> = ({
     if (result?.isOk) {
       success("User saved with success");
       doCancel();
-    } else {
+    } 
+    
+    if(result?.error){
       error(result?.error as string);
     }
   };

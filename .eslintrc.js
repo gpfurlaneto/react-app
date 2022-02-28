@@ -56,6 +56,13 @@ module.exports = {
     'max-len': 0,
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/prop-types': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/require-default-props': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'import/no-cycle': 'off',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
     react: { version: 'detect' },

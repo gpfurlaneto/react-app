@@ -1,20 +1,21 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   IconButton,
   Menu as MenuUI,
   MenuItem as MenuItemUI,
 } from "@mui/material";
 
-export interface MenuProps {
-  items: MenuItem[];
-  buttonContent: React.ReactElement;
-  buttonProps?: { [key: string]: any };
-}
 
 export interface MenuItem {
   id: string;
   label: string;
   action: () => void;
+}
+
+export interface MenuProps {
+  items: MenuItem[];
+  buttonContent: ReactNode;
+  buttonProps?: { [key: string]: any };
 }
 
 export const Menu = ({ buttonContent, buttonProps, items }: MenuProps) => {

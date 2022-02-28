@@ -10,12 +10,12 @@ export interface SignInPageProps {
   onChangePassword: (value: string) => void;
 }
 
-export const Wrapper: React.FC<SignInPageProps> = ({
+export const Wrapper: React.FC<SignInPageProps> = function WrapperComponent({
   state = {},
   onSignIn,
   onChangeUsername,
   onChangePassword,
-}) => {
+}) {
   const doSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     event.stopPropagation();

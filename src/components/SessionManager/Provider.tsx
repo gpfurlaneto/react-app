@@ -7,10 +7,10 @@ export interface ProviderProps {
   loadingCompoent: () => ReactElement
 }
 
-export const Provider: React.FC<ProviderProps> = ({ 
+export const Provider: React.FC<ProviderProps> = function WrapperComponent({ 
   children,
   loadingCompoent
-}) => {
+}) {
 
   const state = useStateService(Service)
   const [finished, setFinished] = useState(false)
@@ -25,8 +25,9 @@ export const Provider: React.FC<ProviderProps> = ({
   }, [])
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <React.Fragment>
       {state.isLoadingUser || !finished ? loadingCompoent() : children}
     </React.Fragment>
-  )
-}
+  );
+};

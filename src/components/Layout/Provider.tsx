@@ -9,9 +9,9 @@ export interface LayoutProviderProps {
   children: (props: LayoutProps) => ReactElement
 }
 
-export const Provider: React.FC<LayoutProviderProps> = ({ children, content }) => {
+export const Provider: React.FC<LayoutProviderProps> = function WrapperComponent({ children, content }) {
 
-  const { push } = useHistory()
+  const { push } = useHistory(); // eslint-disable-line @typescript-eslint/unbound-method
 
   const doLogout = () => {
     Service.logout()

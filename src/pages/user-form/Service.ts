@@ -1,10 +1,11 @@
-import { BaseService } from "../../lib/base-service"
-import { cloneDeep } from "lodash"
-import { Request } from "../../lib/request";
-import { User, UserPayload } from "../../types/User";
-import { apiConfig } from "../../lib/api-config";
+import BaseService from '../../lib/base-service';
+import { cloneDeep } from 'lodash';
+import { get, put, post } from '../../lib/request';
+import { User, UserPayload } from '../../types/User';
+import apiConfig from '../../lib/api-config';
 
-const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+/* eslint-disable no-useless-escape */
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const defaultUserFormState = {
   id: null as unknown as string,
@@ -15,23 +16,22 @@ export const defaultUserFormState = {
   errorEmail: false,
   errorUsername: false,
   errorPassword: false,
-}
+};
 
-export type UserFormState = typeof defaultUserFormState
+export type UserFormState = typeof defaultUserFormState;
 
 class Service extends BaseService<UserFormState> {
-
   async loadUser(userId: string) {
-    this.updateKey('isLoading', true)
-    const result = await Request.get<User>(apiConfig.users.loadUser(userId))
+    this.updateKey('isLoading', true);
+    const result = await get<User>(apiConfig.users.loadUser(userId));
     if (result.isOk) {
       this.updateState({
         ...this.currentState,
         id: userId,
         isLoading: false,
         username: result.data?.username as string,
-        email: result.data?.email as string
-      })
+        email: result.data?.email as string,
+      });
     }
     return result;
   }
@@ -45,7 +45,8 @@ class Service extends BaseService<UserFormState> {
         errorEmail,
         errorUsername,
         errorPassword,
-      })
+      });
+      return null;
     } else {
       this.updateKey('isLoading', true);
 
@@ -55,11 +56,14 @@ class Service extends BaseService<UserFormState> {
       };
 
       if (!this.currentState.id) {
-        payload.password = this.currentState.password
+        payload.password = this.currentState.password;
       }
 
-      const request = this.currentState.id ? Request.put : Request.post;
-      const result = await request<UserPayload, User>(apiConfig.users.save(this.currentState.id || ''), payload)
+      const request = this.currentState.id ? put : post;
+      const result = await request<UserPayload, User>(
+        apiConfig.users.save(this.currentState.id || ''),
+        payload,
+      );
 
       if (result.isOk) {
         this.updateState({
@@ -68,30 +72,34 @@ class Service extends BaseService<UserFormState> {
           errorEmail,
           errorUsername,
           errorPassword,
-        })
+        });
       }
-      return result
+      return result;
     }
   }
 
-  validate(): { errorEmail: boolean; errorUsername: boolean; errorPassword: boolean } {
+  validate(): {
+    errorEmail: boolean;
+    errorUsername: boolean;
+    errorPassword: boolean;
+  } {
     const { username, email, password, id } = this.currentState;
     let errorEmail = !email || !emailRegex.test(email);
-    let errorUsername = !username
-    let errorPassword = !id && !password
+    let errorUsername = !username;
+    let errorPassword = !id && !password;
     return {
       errorEmail,
       errorUsername,
-      errorPassword
-    }
+      errorPassword,
+    };
   }
 
   getDefaultState() {
-    return cloneDeep(defaultUserFormState)
+    return cloneDeep(defaultUserFormState);
   }
 
   getEventIdentifier() {
-    return 'user-form-event'
+    return 'user-form-event';
   }
 
   onChangePasword(value: string): void {
@@ -107,12 +115,12 @@ class Service extends BaseService<UserFormState> {
   }
 }
 
-let instance: Service | null = null
+let instance: Service | null = null;
 const instanciate = () => {
   if (!instance) {
-    instance = new Service()
+    instance = new Service();
   }
-  return instance
-}
+  return instance;
+};
 
-export default instanciate()
+export default instanciate();
