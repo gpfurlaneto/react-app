@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Service from './Service'
-import { useStateService } from '../../lib/use-state-service'
+import useStateService from '../../lib/use-state-service'
 
 export interface ProviderProps {
   children: () => ReactElement
