@@ -73,7 +73,7 @@
     "prettier": "2.5.1"
   },
   "lint-staged": {
-    "*.ts": [
+    "*.{ts,tsx,js,css}": [
       "eslint src/**/**.{ts,tsx,js,css} --fix",
       "prettier --config .prettierrc 'src/**/*.{ts,tsx,js,css}' --write"
     ]
