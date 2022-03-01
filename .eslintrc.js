@@ -65,6 +65,7 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'warn',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-unstable-nested-components': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   settings: {
     react: { version: 'detect' },

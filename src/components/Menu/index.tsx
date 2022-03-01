@@ -14,7 +14,7 @@ export interface MenuItem {
 export interface MenuProps {
   items: MenuItem[];
   buttonContent: ReactNode;
-  buttonProps?: { [key: string]: any };
+  buttonProps?: { [key: string]: unknown };
 }
 
 export function Menu({ buttonContent, buttonProps, items }: MenuProps) {
