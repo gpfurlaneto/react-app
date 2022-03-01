@@ -63,6 +63,7 @@ module.exports = {
     'import/no-cycle': 'off',
     '@typescript-eslint/no-floating-promises': 'warn',
     'jsx-a11y/anchor-is-valid': 'off',
+    'react/no-unstable-nested-components': 'warn',
   },
   settings: {
     react: { version: 'detect' },

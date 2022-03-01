@@ -97,6 +97,7 @@ export const Wrapper: React.FC<UserFormPageProps> = function WapperComponent({
       </form>
     </Layout>
   );
+  
 };
 
 export const UserFormPage = ({ id }: { id?: string }) => {

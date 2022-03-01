@@ -5,7 +5,8 @@ export const Wrapper: React.FC = function WrapperComponent() {
   return <div>Loading...</div>
 }
 
-const A = (props: any) => <Provider {...props} loadingCompoent={() => <Wrapper />} />
-
- // eslint-disable-next-line react/no-unstable-nested-components
-export const SessionManager = (props: any) => (<A {...props} />);
+export const SessionManager = (props: any) => { 
+  return (
+    <Provider {...props} loadingCompoent={() => <Wrapper />} />
+  )
+};

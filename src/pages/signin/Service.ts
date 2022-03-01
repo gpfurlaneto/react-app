@@ -63,25 +63,25 @@ class Service extends BaseService<SignInState> {
       username: this.currentState.username,
       password: this.currentState.password,
     } as SignInPayload;
-    
-    const result: Response<UserSignIn> = await post<SignInPayload, UserSignIn>(
-      apiConfig.session.signIn(),
-      payload as SignInPayload,
-    ) as Response<UserSignIn>;
+    const url = apiConfig.session.signIn() as string;
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const result: Response<UserSignIn> = await post<SignInPayload, UserSignIn>(url,payload as SignInPayload) as Response<UserSignIn>;
 
     this.updateState({
       ...this.currentState,
       isSubmiting: false,
     });
 
-    const data = result.data as UserSignIn;
-    const error = result.error as string
-    if (!error) {
-      sessionHandler.saveToken(data!.token as string);
-      return (data as UserSignIn)!.user as User;
-    } else {
-      return error;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (!result.error) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      sessionHandler.saveToken(result.data?.token as string);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      return result.data?.user as User;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return result.error as string;
   }
 }
 
