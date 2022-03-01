@@ -1,8 +1,9 @@
-import BaseService from '../../lib/base-service';
 import { cloneDeep } from 'lodash';
+import BaseService from '../../lib/base-service';
 import { $delete, get, Response } from '../../lib/request';
 import { User } from '../../types/User';
 import apiConfig from '../../lib/api-config';
+
 export const defaultUsersState = {
   users: null as unknown as User[],
   isLoading: false,
@@ -19,8 +20,8 @@ class Service extends BaseService<UsersState> {
     });
     const result: Response<User> = await $delete<User>(
       apiConfig.users.delete(this.currentState.selectedUserToDelete.id),
-    ) as Response<User>;
-    let newState = { ...this.currentState, isLoading: false };
+    );
+    const newState = { ...this.currentState, isLoading: false };
     if (result.isOk) {
       newState.selectedUserToDelete = null as unknown as User;
       newState.users = newState.users.filter(

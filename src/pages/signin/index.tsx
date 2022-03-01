@@ -1,7 +1,7 @@
-import React from "react";
-import { Provider } from "./Provider";
-import { SignInState } from "./Service";
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import React from 'react';
+import { Button, Grid, Paper, TextField } from '@mui/material';
+import { Provider } from './Provider';
+import { SignInState } from './Service';
 
 export interface SignInPageProps {
   state: SignInState;
@@ -28,14 +28,14 @@ export const Wrapper: React.FC<SignInPageProps> = function WrapperComponent({
       direction="row"
       alignItems="center"
       justifyContent="center"
-      style={{ height: "100vh" }}
+      style={{ height: '100vh' }}
     >
       <Paper
         elevation={3}
         style={{
           padding: 40,
           maxWidth: 350,
-          width: "100%",
+          width: '100%',
         }}
       >
         React App
@@ -49,7 +49,7 @@ export const Wrapper: React.FC<SignInPageProps> = function WrapperComponent({
               variant="outlined"
               defaultValue={state.username}
               error={!state.isValidUsername}
-              helperText={!state.isValidUsername ? "Invalid e-mail." : ""}
+              helperText={!state.isValidUsername ? 'Invalid e-mail.' : ''}
               onChange={(event: { target: { value: string } }) =>
                 onChangeUsername(event.target.value)
               }
@@ -62,7 +62,7 @@ export const Wrapper: React.FC<SignInPageProps> = function WrapperComponent({
               type="password"
               defaultValue={state.password}
               error={!state.isValidPassword}
-              helperText={!state.isValidPassword ? "Invalid password." : ""}
+              helperText={!state.isValidPassword ? 'Invalid password.' : ''}
               onChange={(event: { target: { value: string } }) =>
                 onChangePassword(event.target.value)
               }
@@ -78,6 +78,8 @@ export const Wrapper: React.FC<SignInPageProps> = function WrapperComponent({
   );
 };
 
-export const SignInPage = () => (
-  <Provider>{(props: SignInPageProps) => <Wrapper {...props} />}</Provider>
-);
+export function SignInPage() {
+  return (
+    <Provider>{(props: SignInPageProps) => <Wrapper {...props} />}</Provider>
+  );
+}

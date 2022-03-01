@@ -1,10 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 import {
   IconButton,
   Menu as MenuUI,
   MenuItem as MenuItemUI,
-} from "@mui/material";
-
+} from '@mui/material';
 
 export interface MenuItem {
   id: string;
@@ -18,7 +17,7 @@ export interface MenuProps {
   buttonProps?: { [key: string]: any };
 }
 
-export const Menu = ({ buttonContent, buttonProps, items }: MenuProps) => {
+export function Menu({ buttonContent, buttonProps, items }: MenuProps) {
   const nodeRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -54,13 +53,13 @@ export const Menu = ({ buttonContent, buttonProps, items }: MenuProps) => {
         id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         keepMounted
         transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         open={open}
         onClose={handleClose}
@@ -74,4 +73,4 @@ export const Menu = ({ buttonContent, buttonProps, items }: MenuProps) => {
       </MenuUI>
     </div>
   );
-};
+}

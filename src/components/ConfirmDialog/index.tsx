@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
+} from '@mui/material';
 
 export interface ConfirmDialogProps {
   open: boolean;
@@ -14,15 +14,15 @@ export interface ConfirmDialogProps {
   handleClose?: () => void;
   message: string;
 }
-export const ConfirmDialog = ({
+export function ConfirmDialog({
   open,
   handleConfirm,
   handleClose,
   message,
-}: ConfirmDialogProps) => {
+}: ConfirmDialogProps) {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
-      <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
+      <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
         Confirmation
       </DialogTitle>
       <DialogContent>
@@ -36,4 +36,4 @@ export const ConfirmDialog = ({
       </DialogActions>
     </Dialog>
   );
-};
+}

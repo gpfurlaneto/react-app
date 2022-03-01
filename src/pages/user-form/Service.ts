@@ -1,11 +1,12 @@
-import BaseService from '../../lib/base-service';
 import { cloneDeep } from 'lodash';
+import BaseService from '../../lib/base-service';
 import { get, put, post } from '../../lib/request';
 import { User, UserPayload } from '../../types/User';
 import apiConfig from '../../lib/api-config';
 
 /* eslint-disable no-useless-escape */
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailRegex =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const defaultUserFormState = {
   id: null as unknown as string,
@@ -47,35 +48,34 @@ class Service extends BaseService<UserFormState> {
         errorPassword,
       });
       return null;
-    } else {
-      this.updateKey('isLoading', true);
-
-      const payload: UserPayload = {
-        username: this.currentState.username,
-        email: this.currentState.email,
-      };
-
-      if (!this.currentState.id) {
-        payload.password = this.currentState.password;
-      }
-
-      const request = this.currentState.id ? put : post;
-      const result = await request<UserPayload, User>(
-        apiConfig.users.save(this.currentState.id || ''),
-        payload,
-      );
-
-      if (result.isOk) {
-        this.updateState({
-          ...this.currentState,
-          isLoading: false,
-          errorEmail,
-          errorUsername,
-          errorPassword,
-        });
-      }
-      return result;
     }
+    this.updateKey('isLoading', true);
+
+    const payload: UserPayload = {
+      username: this.currentState.username,
+      email: this.currentState.email,
+    };
+
+    if (!this.currentState.id) {
+      payload.password = this.currentState.password;
+    }
+
+    const request = this.currentState.id ? put : post;
+    const result = await request<UserPayload, User>(
+      apiConfig.users.save(this.currentState.id || ''),
+      payload,
+    );
+
+    if (result.isOk) {
+      this.updateState({
+        ...this.currentState,
+        isLoading: false,
+        errorEmail,
+        errorUsername,
+        errorPassword,
+      });
+    }
+    return result;
   }
 
   validate(): {
@@ -84,9 +84,9 @@ class Service extends BaseService<UserFormState> {
     errorPassword: boolean;
   } {
     const { username, email, password, id } = this.currentState;
-    let errorEmail = !email || !emailRegex.test(email);
-    let errorUsername = !username;
-    let errorPassword = !id && !password;
+    const errorEmail = !email || !emailRegex.test(email);
+    const errorUsername = !username;
+    const errorPassword = !id && !password;
     return {
       errorEmail,
       errorUsername,

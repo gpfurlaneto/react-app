@@ -1,14 +1,14 @@
-import { Layout } from "../../components/Layout";
-import { Provider } from "./Provider";
-import { UsersState } from "./Service";
-import { User } from "../../types/User";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Grid, Link, Tooltip } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { ConfirmDialog } from "../../components/ConfirmDialog";
-import { useHistory } from "react-router-dom";
-import routesConfig from "../../lib/routes-config";
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { Grid, Link, Tooltip } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useHistory } from 'react-router-dom';
+import { Layout } from '../../components/Layout';
+import { Provider } from './Provider';
+import { UsersState } from './Service';
+import { User } from '../../types/User';
+import { ConfirmDialog } from '../../components/ConfirmDialog';
+import routesConfig from '../../lib/routes-config';
 
 export interface UsersPageProps {
   state: UsersState;
@@ -19,17 +19,17 @@ export interface UsersPageProps {
 
 const getColumns = (
   redirectToEdit: (id: number) => void,
-  selectUserToDelete: (row: User) => void
+  selectUserToDelete: (row: User) => void,
 ): GridColDef[] => {
   return [
-    { field: "id", headerName: "Id", flex: 1 },
-    { field: "username", headerName: "Username", flex: 1 },
-    { field: "email", headerName: "Email", flex: 1 },
+    { field: 'id', headerName: 'Id', flex: 1 },
+    { field: 'username', headerName: 'Username', flex: 1 },
+    { field: 'email', headerName: 'Email', flex: 1 },
     {
-      field: "action",
-      headerName: "Actions",
-      align: "center",
-      headerAlign: "center",
+      field: 'action',
+      headerName: 'Actions',
+      align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }: { row: User }) => {
         return (
           <>
@@ -38,7 +38,7 @@ const getColumns = (
                 <EditIcon fontSize="inherit" />
               </Link>
             </Tooltip>
-            <>&nbsp; &nbsp;</>
+            &nbsp; &nbsp;
             <Tooltip title="Delete post">
               <Link component="button" onClick={() => selectUserToDelete(row)}>
                 <DeleteIcon fontSize="inherit" />
@@ -69,7 +69,7 @@ export const Wrapper: React.FC<UsersPageProps> = function WapperComponent({
         <Grid container>
           <Link
             onClick={() => history.push(routesConfig.users.form())}
-            sx={{ marginLeft: "auto", marginBottom: 1, cursor: "pointer" }}
+            sx={{ marginLeft: 'auto', marginBottom: 1, cursor: 'pointer' }}
           >
             New user
           </Link>
@@ -95,6 +95,8 @@ export const Wrapper: React.FC<UsersPageProps> = function WapperComponent({
   );
 };
 
-export const UsersPage = () => (
-  <Provider>{(props: UsersPageProps) => <Wrapper {...props} />}</Provider>
-);
+export function UsersPage() {
+  return (
+    <Provider>{(props: UsersPageProps) => <Wrapper {...props} />}</Provider>
+  );
+}

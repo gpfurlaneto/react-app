@@ -1,8 +1,8 @@
-import { Button, Container, Grid, Paper, TextField } from "@mui/material";
-import { SyntheticEvent } from "react";
-import { Layout } from "../../components/Layout";
-import { Provider } from "./Provider";
-import { UserFormState } from "./Service";
+import { Button, Container, Grid, Paper, TextField } from '@mui/material';
+import { SyntheticEvent } from 'react';
+import { Layout } from '../../components/Layout';
+import { Provider } from './Provider';
+import { UserFormState } from './Service';
 
 export interface UserFormPageProps {
   state: UserFormState;
@@ -37,8 +37,8 @@ export const Wrapper: React.FC<UserFormPageProps> = function WapperComponent({
           variant="outlined"
           sx={{
             paddingY: 4,
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           <Container maxWidth="sm">
@@ -97,13 +97,12 @@ export const Wrapper: React.FC<UserFormPageProps> = function WapperComponent({
       </form>
     </Layout>
   );
-  
 };
 
-export const UserFormPage = ({ id }: { id?: string }) => {
+export function UserFormPage({ id }: { id?: string }) {
   return (
     <Provider userId={id}>
       {(props: UserFormPageProps) => <Wrapper {...props} />}
     </Provider>
   );
-};
+}

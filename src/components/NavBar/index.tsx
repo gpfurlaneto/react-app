@@ -1,45 +1,45 @@
-import { Menu } from "../Menu";
-import { Box, useTheme } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Box, useTheme } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Menu } from '../Menu';
 
 interface NavBarProps {
   logout: () => void;
 }
 
-export const NavBar = ({ logout }: NavBarProps) => {
+export function NavBar({ logout }: NavBarProps) {
   const theme = useTheme();
   const history = useHistory();
 
   return (
     <AppBar position="static">
-      <Toolbar style={{ justifyContent: "space-between" }}>
+      <Toolbar style={{ justifyContent: 'space-between' }}>
         <Box display="flex" alignItems="center">
           <Menu
             buttonContent={<MenuIcon />}
             buttonProps={{
-              edge: "start",
+              edge: 'start',
               sx: {
                 marginRight: theme.spacing(2),
               },
               // className: classes.menuButton,
-              color: "inherit",
-              "aria-label": "menu",
+              color: 'inherit',
+              'aria-label': 'menu',
             }}
             items={[
               {
-                id: "home",
-                label: "Home",
-                action: () => history.push("/home"),
+                id: 'home',
+                label: 'Home',
+                action: () => history.push('/home'),
               },
               {
-                id: "users",
-                label: "Users",
-                action: () => history.push("/users"),
+                id: 'users',
+                label: 'Users',
+                action: () => history.push('/users'),
               },
             ]}
           />
@@ -47,9 +47,9 @@ export const NavBar = ({ logout }: NavBarProps) => {
         </Box>
         <Menu
           buttonContent={<AccountCircleIcon />}
-          items={[{ id: "logout", label: "Logout", action: logout }]}
+          items={[{ id: 'logout', label: 'Logout', action: logout }]}
         />
       </Toolbar>
     </AppBar>
   );
-};
+}

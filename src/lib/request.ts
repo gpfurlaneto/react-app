@@ -73,24 +73,24 @@ async function doRequest<T>(
   }
 }
 
-  export async function get<T>(url: string): Promise<Response<T>> {
-    return doRequest<T>(url, 'GET');
-  }
+export async function get<T>(url: string): Promise<Response<T>> {
+  return doRequest<T>(url, 'GET');
+}
 
-  export async function post<TPayload, T>(
-    url: string,
-    data: TPayload,
-  ): Promise<Response<T>> {
-    return doRequest<T>(url, 'POST', data);
-  }
+export async function post<TPayload, T>(
+  url: string,
+  data: TPayload,
+): Promise<Response<T>> {
+  return doRequest<T>(url, 'POST', data);
+}
 
-  export async function put<TPayload, T>(
-    url: string,
-    data: TPayload,
-  ): Promise<Response<T>> {
-    return doRequest<T>(url, 'PUT', data);
-  }
+export async function put<TPayload, T>(
+  url: string,
+  data: TPayload,
+): Promise<Response<T>> {
+  return doRequest<T>(url, 'PUT', data);
+}
 
-  export async function $delete<T>(url: string): Promise<Response<T>> {
-    return doRequest<T>(url, 'DELETE', null);
-  }
+export async function $delete<T>(url: string): Promise<Response<T>> {
+  return doRequest<T>(url, 'DELETE', null);
+}
