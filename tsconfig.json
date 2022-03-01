@@ -18,15 +18,23 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/types/*"
-    ]
+    ],
+    "isolatedModules": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", ".eslintrc.js"],
-  "exclude": ["node_modules"],
-  "baseUrl": ".",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "baseUrl": "."
 }
