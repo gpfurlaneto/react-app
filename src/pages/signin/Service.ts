@@ -1,6 +1,6 @@
-import BaseService from '../../lib/base-service';
 import { cloneDeep } from 'lodash';
-import { post } from '../../lib/request';
+import BaseService from '../../lib/base-service';
+import { post, Response } from '../../lib/request';
 import { User, SignInPayload, UserSignIn } from '../../types/User';
 import apiConfig from '../../lib/api-config';
 import sessionHandler from '../../lib/session-handler';
@@ -63,25 +63,23 @@ class Service extends BaseService<SignInState> {
       username: this.currentState.username,
       password: this.currentState.password,
     } as SignInPayload;
-    const url = apiConfig.session.signIn() as string;
+    const url = apiConfig.session.signIn();
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const result: Response<UserSignIn> = await post<SignInPayload, UserSignIn>(url,payload as SignInPayload) as Response<UserSignIn>;
+    const result: Response<UserSignIn> = (await post<SignInPayload, UserSignIn>(
+      url,
+      payload,
+    )) as unknown as Response<UserSignIn>;
 
     this.updateState({
       ...this.currentState,
       isSubmiting: false,
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (!result.error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       sessionHandler.saveToken(result.data?.token as string);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       return result.data?.user as User;
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return result.error as string;
+    return result.error;
   }
 }
 

@@ -23,12 +23,9 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module',
     project: ['./tsconfig.json'],
+    extraFileExtensions: ['.css'],
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'prettier'
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'no-console': 0,
     quotes: ['error', 'single'],
@@ -47,7 +44,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-      }
+      },
     ],
     'class-methods-use-this': 0,
     'import/prefer-default-export': 0,
@@ -55,7 +52,10 @@ module.exports = {
     'no-empty-function': 0,
     'max-len': 0,
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
     'react/require-default-props': 'off',

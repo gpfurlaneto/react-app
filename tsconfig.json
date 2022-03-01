@@ -28,4 +28,5 @@
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", ".eslintrc.js"],
   "exclude": ["node_modules"],
+  "baseUrl": ".",
 }

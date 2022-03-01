@@ -63,6 +63,7 @@
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-css": "^0.6.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -73,9 +74,9 @@
     "prettier": "2.5.1"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,css}": [
-      "eslint src/**/**.{ts,tsx,js,css} --fix",
-      "prettier --config .prettierrc 'src/**/*.{ts,tsx,js,css}' --write"
+    "*.{ts,tsx,js}": [
+      "eslint src/**/**.{ts,tsx,js} --fix",
+      "prettier --config .prettierrc 'src/**/*.{ts,tsx,js}' --write"
     ]
   }
 }
