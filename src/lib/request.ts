@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get as getLodash } from 'lodash';
 import axios, { Method } from 'axios';
 import apiConfig from './api-config';
 import routesConfig from './routes-config';
@@ -57,7 +57,8 @@ async function doRequest<T>(
 
       const errorMessage: string = [404, 500].includes(error.response.status)
         ? error.message
-        : (get(error, 'response.data.message') as string) || error.message;
+        : (getLodash(error, 'response.data.message') as string) ||
+          error.message;
       return {
         code: error.response.status,
         error: errorMessage,

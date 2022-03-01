@@ -1,6 +1,7 @@
 export default abstract class BaseService<TState> {
   currentState: TState;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   events: { [key: string]: (newState: TState) => void };
 
   constructor() {
