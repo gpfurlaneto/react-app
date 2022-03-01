@@ -13,6 +13,7 @@ export const Provider: React.FC<UsersPageProviderProps> =
   function WapperComponent({ children }) {
     const state = useStateService<UsersState>(Service);
     const { error } = useDefaultSnackbar();
+
     useEffect(() => {
       if (!state.users && !state.isLoading) {
         Service.loadUsers();

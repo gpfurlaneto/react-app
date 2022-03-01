@@ -5,7 +5,7 @@ import { SignInState } from './Service';
 
 export interface SignInPageProps {
   state: SignInState;
-  onSignIn: () => Promise<void>;
+  onSignIn: () => void;
   onChangeUsername: (value: string) => void;
   onChangePassword: (value: string) => void;
 }

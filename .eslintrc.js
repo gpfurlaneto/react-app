@@ -62,7 +62,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/no-cycle': 'off',
-    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/no-floating-promises': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-unstable-nested-components': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
