@@ -1,32 +1,31 @@
-import { get } from 'lodash'
-import axios, { Method } from 'axios'
-import { apiConfig } from './api-config'
-import { routesConfig } from './routes-config'
-import { sessionHandler } from './session-handler'
+import { get as getLodash } from 'lodash';
+import axios, { Method } from 'axios';
+import apiConfig from './api-config';
+import routesConfig from './routes-config';
+import sessionHandler from './session-handler';
 
 export interface IRequestOptions {
-  unauthorizedErrorExpected: boolean
+  unauthorizedErrorExpected: boolean;
 }
 
 export interface Response<T> {
-  data?: T
-  code?: number
-  error?: string
-  isOk: boolean
+  data?: T;
+  code?: number;
+  error?: string;
+  isOk: boolean;
 }
 
 async function doRequest<T>(
   url: string,
   method: Method,
-  payload: any = null,
+  payload: unknown = null,
 ): Promise<Response<T>> {
+  const headers: { [key: string]: string } = {};
 
-  const headers: { [key: string]: string } = {}
-
-  const token = sessionHandler.getToken()
+  const token = sessionHandler.getToken();
 
   if (token) {
-    headers.Authorization = `Bearer ${token}`
+    headers.Authorization = `Bearer ${token}`;
   }
 
   try {
@@ -35,60 +34,64 @@ async function doRequest<T>(
       url,
       method,
       headers,
-      data: payload
-    })
+      data: payload,
+    });
 
     return {
       code: response.status,
       data: response.data as T,
-      isOk: true
-    }
+      isOk: true,
+    };
   } catch (error) {
-    console.error(error)
+    if (!axios.isAxiosError(error)) {
+      throw error;
+    }
+
+    console.error(error);
+
     if (error.response) {
       if (error.response.status === 401) {
-        sessionHandler.clearToken()
-        window.location.pathname = routesConfig.session.signIn()
+        sessionHandler.clearToken();
+        window.location.pathname = routesConfig.session.signIn();
       }
 
-      const errorMessage = [404, 500].includes(error.response.status)
+      const errorMessage: string = [404, 500].includes(error.response.status)
         ? error.message
-        : get(error, 'response.data.message') || error.message
+        : (getLodash(error, 'response.data.message') as string) ||
+          error.message;
       return {
         code: error.response.status,
         error: errorMessage,
-        isOk: false
-      }
+        isOk: false,
+      };
     }
 
     return {
-      code: error.response.status,
+      code: error.code ? parseInt(error.code, 10) : undefined,
       error: error.message,
-      isOk: false
-    }
+      isOk: false,
+    };
   }
 }
 
-export class Request {
-  static async get<T>(url: string): Promise<Response<T>> {
-    return doRequest<T>(url, 'GET')
-  }
+export async function get<T>(url: string): Promise<Response<T>> {
+  return doRequest<T>(url, 'GET');
+}
 
-  static async post<TPayload, T>(
-    url: string,
-    data: TPayload
-  ): Promise<Response<T>> {
-    return doRequest<T>(url, 'POST', data)
-  }
+export async function post<TPayload, T>(
+  url: string,
+  data: TPayload,
+): Promise<Response<T>> {
+  return doRequest<T>(url, 'POST', data);
+}
 
-  static async put<TPayload, T>(
-    url: string,
-    data: TPayload
-  ): Promise<Response<T>> {
-    return doRequest<T>(url, 'PUT', data)
-  }
+export async function put<TPayload, T>(
+  url: string,
+  data: TPayload,
+): Promise<Response<T>> {
+  return doRequest<T>(url, 'PUT', data);
+}
 
-  static async $delete<T>(url: string): Promise<Response<T>> {
-    return doRequest<T>(url, 'DELETE', null)
-  }
+export async function $delete<T>(url: string): Promise<Response<T>> {
+  return doRequest<T>(url, 'DELETE', null);
 }
