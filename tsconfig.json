@@ -5,7 +5,6 @@
       "dom",
       "dom.iterable",
       "esnext",
-      "es7"
     ],
     "allowJs": true,
     "checkJs": false,
@@ -29,6 +28,13 @@
     ]
   },
   "include": [
-    "src"
-  ]
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "baseUrl": "."
 }
