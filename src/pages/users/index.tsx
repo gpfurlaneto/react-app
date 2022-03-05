@@ -1,5 +1,6 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Grid, Link, Tooltip } from '@mui/material';
+import { CircularProgress, Grid, Link, Tooltip } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom';
@@ -34,13 +35,21 @@ const getColumns = (
         return (
           <>
             <Tooltip title="Edit post">
-              <Link component="button" onClick={() => redirectToEdit(row.id)}>
+              <Link
+                component="button"
+                onClick={() => redirectToEdit(row.id)}
+                data-testid={`edit-${row.id}`}
+              >
                 <EditIcon fontSize="inherit" />
               </Link>
             </Tooltip>
             &nbsp; &nbsp;
             <Tooltip title="Delete post">
-              <Link component="button" onClick={() => selectUserToDelete(row)}>
+              <Link
+                component="button"
+                onClick={() => selectUserToDelete(row)}
+                data-testid={`delete-${row.id}`}
+              >
                 <DeleteIcon fontSize="inherit" />
               </Link>
             </Tooltip>
@@ -68,14 +77,15 @@ export const Wrapper: React.FC<UsersPageProps> = function WapperComponent({
       <>
         <Grid container>
           <Link
+            data-testid="new-user"
             onClick={() => history.push(routesConfig.users.form())}
             sx={{ marginLeft: 'auto', marginBottom: 1, cursor: 'pointer' }}
           >
             New user
           </Link>
         </Grid>
-
         <DataGrid
+          columnBuffer={4}
           autoHeight
           autoPageSize
           rows={state.users}
@@ -84,6 +94,12 @@ export const Wrapper: React.FC<UsersPageProps> = function WapperComponent({
           rowsPerPageOptions={[5]}
           disableSelectionOnClick
         />
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={state.isLoading}
+        >
+          <CircularProgress data-testid="loading-backdrop" color="inherit" />
+        </Backdrop>
         <ConfirmDialog
           open={Boolean(state.selectedUserToDelete)}
           handleClose={clearDeleteUser}

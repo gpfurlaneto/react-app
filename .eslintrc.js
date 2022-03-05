@@ -66,6 +66,10 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-unstable-nested-components': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.test.tsx'] },
+    ],
   },
   settings: {
     react: { version: 'detect' },

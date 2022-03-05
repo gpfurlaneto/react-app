@@ -29,10 +29,12 @@ export function ConfirmDialog({
         <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose}>
+        <Button autoFocus onClick={handleClose} data-testid="cancel">
           Cancel
         </Button>
-        <Button onClick={handleConfirm}>Confirm</Button>
+        <Button onClick={handleConfirm} data-testid="confirm">
+          Confirm
+        </Button>
       </DialogActions>
     </Dialog>
   );
