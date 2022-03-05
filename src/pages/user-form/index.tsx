@@ -9,7 +9,7 @@ export interface UserFormPageProps {
   onChangeUsername: (value: string) => void;
   onChangeEmail: (value: string) => void;
   onChangePasword: (value: string) => void;
-  onSave: () => Proise<void>;
+  onSave: () => Promise<void>;
   onCancel: () => void;
 }
 
