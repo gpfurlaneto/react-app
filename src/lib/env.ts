@@ -1,4 +1,4 @@
 const env = {
-  API_BASE_URL: ''
+  API_BASE_URL: '',
 };
-export default env
+export default env;
