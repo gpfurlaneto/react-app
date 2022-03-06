@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import * as H from 'history';
 import { Layout } from '../../components/Layout';
 import { Provider } from './Provider';
 import { UsersState } from './Service';
@@ -68,7 +69,7 @@ export const UsersPageWrapper: React.FC<UsersPageProps> =
     clearDeleteUser,
     deleteSelectedUser,
   }) {
-    const history = useHistory();
+    const history = useHistory() as H.History;
 
     const redirectToEdit = (id: number) => {
       history.push(routesConfig.users.form(id));

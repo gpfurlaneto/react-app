@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
+import * as H from 'history';
 import { useHistory } from 'react-router-dom';
 import { UserFormPageProps } from '.';
 import Service, { UserFormState } from './Service';
@@ -13,7 +14,7 @@ interface UserFormPageProviderProps {
 
 export const Provider: React.FC<UserFormPageProviderProps> =
   function WrapperComponent({ userId, children }) {
-    const history = useHistory();
+    const history = useHistory() as H.History;
     const state = useStateService<UserFormState>(Service);
     const { error, success } = useDefaultSnackbar();
 

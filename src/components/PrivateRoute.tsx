@@ -1,4 +1,5 @@
 import React, { ReactElement, ReactNode, useEffect } from 'react';
+import * as H from 'history';
 import { Route, RouteProps, useHistory, useParams } from 'react-router-dom';
 import routesConfig from '../lib/routes-config';
 import useStateService from '../lib/use-state-service';
@@ -8,7 +9,7 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
   // eslint-disable-next-line react/no-unstable-nested-components
   function Test() {
     const params = useParams();
-    const { push } = useHistory(); // eslint-disable-line @typescript-eslint/unbound-method
+    const { push } = useHistory() as H.History; // eslint-disable-line @typescript-eslint/unbound-method
     const sessionState = useStateService<SessionState>(SessionService);
 
     useEffect(() => {

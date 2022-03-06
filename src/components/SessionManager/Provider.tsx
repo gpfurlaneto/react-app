@@ -4,7 +4,7 @@ import useStateService from '../../lib/use-state-service';
 
 export interface ProviderProps {
   children: () => ReactElement;
-  loadingCompoent: () => ReactElement;
+  loadingCompoent: ReactElement;
 }
 
 const Provider: React.FC<ProviderProps> = function SessionManagerProvider({
@@ -25,7 +25,7 @@ const Provider: React.FC<ProviderProps> = function SessionManagerProvider({
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>{state.isLoadingUser || !finished ? loadingCompoent() : children}</>
+    <>{state.isLoadingUser || !finished ? loadingCompoent : children()}</>
   );
 };
 

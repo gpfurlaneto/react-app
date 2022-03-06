@@ -1,5 +1,6 @@
 import { Box, useTheme } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import * as H from 'history';
 import AppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +14,7 @@ interface NavBarProps {
 
 export function NavBar({ logout }: NavBarProps) {
   const theme = useTheme();
-  const history = useHistory();
+  const history = useHistory() as H.History;
 
   return (
     <AppBar position="static">

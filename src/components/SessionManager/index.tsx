@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Provider from './Provider';
 
 export const SessionManagerWrapper: React.FC =
@@ -6,8 +6,10 @@ export const SessionManagerWrapper: React.FC =
     return <div>Loading...</div>;
   };
 
-export function SessionManager(props: any) {
+export function SessionManager({ children }: { children: ReactElement }) {
   return (
-    <Provider {...props} loadingCompoent={() => <SessionManagerWrapper />} />
+    <Provider loadingCompoent={<SessionManagerWrapper />}>
+      {() => children}
+    </Provider>
   );
 }

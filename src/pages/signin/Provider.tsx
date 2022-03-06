@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import * as H from 'history';
 import { useHistory } from 'react-router-dom';
 import { SignInPageProps } from '.';
 import { User } from '../../types/User';
@@ -14,7 +15,7 @@ interface SignInProviderProps {
 
 export const Provider: React.FC<SignInProviderProps> =
   function WrapperComponent({ children }) {
-    const { push } = useHistory(); // eslint-disable-line @typescript-eslint/unbound-method
+    const { push } = useHistory() as H.History; // eslint-disable-line @typescript-eslint/unbound-method
     const enqueueSnackbar = useDefaultSnackbar();
 
     const state = useStateService<SignInState>(Service);
