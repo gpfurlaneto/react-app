@@ -1,8 +1,13 @@
-import React from 'react'
-import { Provider } from './Provider'
+import React from 'react';
+import Provider from './Provider';
 
-export const Wrapper: React.FC = () => {
-  return <div>Loading...</div>
+export const SessionManagerWrapper: React.FC =
+  function SessionManagerComponent() {
+    return <div>Loading...</div>;
+  };
+
+export function SessionManager(props: any) {
+  return (
+    <Provider {...props} loadingCompoent={() => <SessionManagerWrapper />} />
+  );
 }
-
-export const SessionManager = (props: any) => (<Provider {...props} loadingCompoent={() => <Wrapper />} />)

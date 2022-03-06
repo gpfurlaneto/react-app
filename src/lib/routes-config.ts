@@ -1,11 +1,13 @@
-export const routesConfig = {
+const routesConfig = {
   session: {
     signIn: () => '/session/signin',
-    loadUser: () => '/session/user'
+    loadUser: () => '/session/user',
   },
   home: () => '/home',
   users: {
     list: () => '/users',
-    form: (id?: number) => `/users/form/${id || ''}`
-  }
-}
+    form: (id?: number) => `/users/form/${id || ''}`,
+  },
+};
+
+export default routesConfig;

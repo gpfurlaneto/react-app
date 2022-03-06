@@ -1,18 +1,17 @@
-import { BaseService } from "./base-service";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import BaseService from './base-service';
 
-export const useStateService = <T> (service: BaseService<T>) => {
+const useStateService = <T>(service: BaseService<T>) => {
+  const [state, setState] = useState(service.currentState);
 
-  const [state, setState] = useState(service.currentState)
-  
   useEffect(() => {
-    service.registerEvent(service.getEventIdentifier(), setState)
+    service.registerEvent(service.getEventIdentifier(), setState);
     return () => {
-      service.reset()
-    }
-    
-  }, [service])
+      service.reset();
+    };
+  }, [service]);
 
-  return state
+  return state;
+};
 
-}
+export default useStateService;

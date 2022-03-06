@@ -1,11 +1,11 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { HomePage, SignInPage, UsersPage, UserFormPage } from "./pages";
-import { SnackbarProvider } from "notistack";
-import { SessionManager } from "./components/SessionManager";
-import { PrivateRoute } from "./components/PrivateRoute";
+import { SnackbarProvider } from 'notistack';
+import { HomePage, SignInPage, UsersPage, UserFormPage } from './pages';
+import { SessionManager } from './components/SessionManager';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
