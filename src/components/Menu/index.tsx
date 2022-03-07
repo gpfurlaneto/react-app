@@ -8,7 +8,7 @@ import {
 export interface MenuProps {
   items: MenuItem[];
   buttonContent: React.ReactElement;
-  buttonProps?: { [key: string]: any };
+  buttonProps?: { [key: string]: unknown };
 }
 
 export interface MenuItem {
@@ -38,7 +38,6 @@ export function Menu({ buttonContent, buttonProps, items }: MenuProps) {
   };
   return (
     <div>
-      test
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
+import * as H from 'history';
 import { UsersPageWrapper } from '.';
 import { UsersState } from './Service';
 import { User } from '../../types/User';
@@ -99,7 +100,7 @@ test('call delete event', () => {
   fireEvent.click(deleteButton);
 
   expect(selectUserToDelete.mock.calls.length).toBe(1);
-  expect((selectUserToDelete.mock.calls as [][])[0][0]).toBe(user);
+  expect((selectUserToDelete.mock.calls as [1][])[0][0]).toBe(user);
 });
 
 test('call confirm delete user event', () => {
@@ -157,7 +158,7 @@ test('redirect user to create new user', () => {
 
   const user = { id: 1000, username: 'usernamea', email: 'a@a.com' };
   const { getByTestId } = render(
-    <Router history={historyMock}>
+    <Router history={historyMock as unknown as H.History}>
       <UsersPageWrapper
         state={{
           ...defaultState,
@@ -174,7 +175,7 @@ test('redirect user to create new user', () => {
   const editLink = getByTestId('new-user');
   fireEvent.click(editLink);
   expect(historyMock.push.mock.calls.length).toBe(1);
-  expect((historyMock.push.mock.calls as [][])[0][0]).toBe('/users/form/');
+  expect((historyMock.push.mock.calls as [1][])[0][0]).toBe('/users/form/');
 });
 
 test('redirect user to edit', () => {
@@ -182,7 +183,7 @@ test('redirect user to edit', () => {
 
   const user = { id: 1000, username: 'usernamea', email: 'a@a.com' };
   const { getByTestId } = render(
-    <Router history={historyMock}>
+    <Router history={historyMock as unknown as H.History}>
       <UsersPageWrapper
         state={{
           ...defaultState,
@@ -199,5 +200,5 @@ test('redirect user to edit', () => {
   const editLink = getByTestId('edit-1000');
   fireEvent.click(editLink);
   expect(historyMock.push.mock.calls.length).toBe(1);
-  expect((historyMock.push.mock.calls as [][])[0][0]).toBe('/users/form/1000');
+  expect((historyMock.push.mock.calls as [1][])[0][0]).toBe('/users/form/1000');
 });
