@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { Provider } from './Provider';
 import { SignInState } from './Service';
+import Backdrop from '../../components/Backdrop';
 
 export interface SignInPageProps {
   state: SignInState;
@@ -12,7 +13,7 @@ export interface SignInPageProps {
 
 export const SignInPageWrapper: React.FC<SignInPageProps> =
   function SignInPageComponent({
-    state = {},
+    state,
     onSignIn,
     onChangeUsername,
     onChangePassword,
@@ -75,6 +76,7 @@ export const SignInPageWrapper: React.FC<SignInPageProps> =
             </Grid>
           </form>
         </Paper>
+        <Backdrop show={state.isSubmiting} />
       </Grid>
     );
   };
