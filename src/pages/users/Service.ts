@@ -12,7 +12,7 @@ export const defaultUsersState = {
 
 export type UsersState = typeof defaultUsersState;
 
-class Service extends BaseService<UsersState> {
+export class UsersService extends BaseService<UsersState> {
   async deleteSelectedUser() {
     this.updateState({
       ...this.currentState,
@@ -65,10 +65,10 @@ class Service extends BaseService<UsersState> {
   }
 }
 
-let instance: Service | null = null;
+let instance: UsersService | null = null;
 const instanciate = () => {
   if (!instance) {
-    instance = new Service();
+    instance = new UsersService();
   }
   return instance;
 };
